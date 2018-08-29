@@ -9,18 +9,39 @@ services:
     image: postgres:10.5
     volumes:
     - db-data:/var/lib/postgresql/data
-
-  sso:
-    build:
-      context: ./sso
     environment:
-      NODE_ENV: production
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+
+  apiserver:
+    build:
+      context: ./apiserver
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DB_TYPE: ${DB_TYPE}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_DATABASE: ${DB_DATABASE}
     depends_on:
       - db
     ports:
       - "9000:9000"
   
-
+  migrations:
+    build:
+      context: ./migrations
+    container_name: migrations
+    environment:
+      DB_TYPE: ${DB_TYPE}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_DATABASE: ${DB_DATABASE}
+    volumes:
+      - ./migrations/migrations:/opt/migrations
+      - ./migrations/seeds:/opt/seeds
 
 volumes:
   db-data:
