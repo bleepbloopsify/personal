@@ -1,0 +1,7 @@
+
+# we don't need docker context inside the webapp
+Dockerfile
+.dockerignore
+
+# we don't want the virtualenv
+env/

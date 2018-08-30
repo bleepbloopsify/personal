@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+
+  web:
+    build:
+      context: ./web
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./web/requirements.txt:/opt/requirements.txt

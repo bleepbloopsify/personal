@@ -1,0 +1,1 @@
+This is a simple website where the only functionality is content.
