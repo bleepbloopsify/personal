@@ -7,5 +7,27 @@ services:
     ports:
       - ${NGINX_PORTS}
     volumes:
-      - ./server/files:/www/data:ro
-      - ./server/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - certbot_data:/opt/certbot/
+
+  fileserver:
+    image: nginx:1.15.3-alpine
+    volumes:
+      - ./fileserver/files:/www/data:ro
+      - ./fileserver/nginx.conf:/etc/nginx/nginx.conf
+  
+  webhooks:
+    build:
+      context: ./webhooks
+    env_file:
+      - webhooks.env
+    volumes:
+      - webhook_data:${WEBHOOK_DATA}
+
+  certbot:
+    image: certbot/certbot
+    command: echo "certbot is a command line utility."
+
+volumes:
+  webhook_data:
+  certbot_data:
