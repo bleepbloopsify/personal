@@ -31,7 +31,7 @@ services:
     volumes:
       - ./logs/letsencrypt:/var/log/letsencrypt
       - certbot_verification:/var/www/.well-known
-      - certbot_data:/etc/letsencrypt
+      - certbot_data:/certs/letsencrypt
 
 volumes:
   webhook_data:
