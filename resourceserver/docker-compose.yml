@@ -9,6 +9,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - certbot_data:/opt/certbot/
+      - certbot_verification:/var/www/letsencrypt
 
   fileserver:
     image: nginx:1.15.3-alpine
@@ -27,7 +28,12 @@ services:
   certbot:
     image: certbot/certbot
     command: echo "certbot is a command line utility."
+    volumes:
+      - ./logs/letsencrypt:/var/log/letsencrypt
+      - certbot_verification:/var/www/.well-known
+      - certbot_data:/etc/letsencrypt
 
 volumes:
   webhook_data:
   certbot_data:
+  certbot_verification:
