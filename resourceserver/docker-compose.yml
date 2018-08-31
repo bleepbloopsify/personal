@@ -31,8 +31,8 @@ services:
     command: echo "Hello"
     volumes:
       - ./logs/letsencrypt:/var/log/letsencrypt
-      - certbot_verification:/var/www/.well-known
-      - certbot_data:/certs/letsencrypt
+      - certbot_verification:/var/www
+      - certbot_data:/etc/letsencrypt
 
 volumes:
   webhook_data:
