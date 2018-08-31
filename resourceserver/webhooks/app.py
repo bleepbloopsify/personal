@@ -7,7 +7,7 @@ DATA_DIR = env.get('DATA_DIR') or '/mnt/data'
 
 app = Flask(__name__)
 
-@app.get('/')
+@app.route('/')
 def index():
   return render_template('index.html')
 
