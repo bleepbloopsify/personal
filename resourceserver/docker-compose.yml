@@ -27,7 +27,8 @@ services:
 
   certbot:
     image: certbot/certbot
-    command: echo "certbot is a command line utility."
+    entrypoint: ''
+    command: echo "Hello"
     volumes:
       - ./logs/letsencrypt:/var/log/letsencrypt
       - certbot_verification:/var/www/.well-known
