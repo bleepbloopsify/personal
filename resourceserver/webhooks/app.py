@@ -1,7 +1,7 @@
 from os import environ as env
 from threading import Thread
 
-from flask import Flask
+from flask import Flask, render_template
 
 DATA_DIR = env.get('DATA_DIR') or '/mnt/data'
 
