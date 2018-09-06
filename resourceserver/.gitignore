@@ -1,4 +1,6 @@
 *nginx.conf
+ssh.config
+
 !template*.nginx.conf
 
 logs/

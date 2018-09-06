@@ -24,7 +24,9 @@ services:
     env_file:
       - webhooks.env
     volumes:
-      - ./data/:/mnt/data
+      - ./data:/mnt/data
+      - ./keys:/mnt/keys
+      - ./ssh.config:/root/.ssh/config
 
   certbot:
     image: certbot/certbot
@@ -36,6 +38,5 @@ services:
       - certbot_data:/etc/letsencrypt
 
 volumes:
-  webhook_data:
   certbot_data:
   certbot_verification:
