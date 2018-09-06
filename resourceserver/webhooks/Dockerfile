@@ -1,8 +1,6 @@
 FROM python:3.6-alpine
 
-RUN apk --update add git openssh && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm /var/cache/apk/*
+RUN apk --update --no-cache add git openssh
 
 WORKDIR /opt/
 
