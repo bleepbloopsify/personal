@@ -33,7 +33,7 @@ def resume_hook():
   return 'OK'
 
 def git_pull(location):
-  subprocess.run(['cd', location, '&&', 'git', 'pull'])
+  subprocess.run(['git', 'pull'], cwd=location)
 
 if __name__ == '__main__':
   app.run('0.0.0.0', port=env.get('PORT') or 8000)

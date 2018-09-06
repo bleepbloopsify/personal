@@ -13,4 +13,7 @@ RUN rm -rf /root/.cache
 
 COPY ./ ./
 
+RUN ln -s $(pwd)/ssh.config /root/.ssh/config
+# to set perms for ssh config
+
 CMD ["python", "app.py"]

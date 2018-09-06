@@ -26,7 +26,6 @@ services:
     volumes:
       - ./data:/mnt/data
       - ./keys:/mnt/keys
-      - ./ssh.config:/root/.ssh/config
 
   certbot:
     image: certbot/certbot
