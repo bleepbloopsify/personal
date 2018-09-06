@@ -24,7 +24,7 @@ services:
     env_file:
       - webhooks.env
     volumes:
-      - webhook_data:${WEBHOOK_DATA}
+      - ./data/:/mnt/data
 
   certbot:
     image: certbot/certbot
