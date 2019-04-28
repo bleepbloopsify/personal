@@ -13,6 +13,7 @@ RUN rm -rf /root/.cache
 
 COPY ./ ./
 
+RUN mkdir -p /root/.ssh/
 RUN ln -s $(pwd)/ssh.config /root/.ssh/config
 # to set perms for ssh config
 

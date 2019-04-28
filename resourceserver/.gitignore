@@ -1,7 +1,0 @@
-*nginx.conf
-
-!template*.nginx.conf
-
-logs/
-data/
-configs/

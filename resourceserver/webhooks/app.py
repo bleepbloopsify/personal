@@ -5,7 +5,7 @@ import subprocess
 
 from flask import Flask, render_template, request, abort
 
-DATA_DIR = '/mnt/data'
+DATA_DIR = '/mnt/repos'
 
 app = Flask(__name__)
 

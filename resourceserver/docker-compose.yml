@@ -5,18 +5,20 @@ services:
   nginx:
     image: nginx:1.15.3-alpine
     ports:
-      - ${NGINX_PORTS}
-      - "4443:443"
+      - 80:80
+      - 443:443
     volumes:
-      - ./${NGINX_CONF}:/etc/nginx/nginx.conf:ro
+      - ./proxy/${NGINX_CONF}:/etc/nginx/nginx.conf:ro
       - certbot_data:/etc/letsencrypt:ro
       - certbot_verification:/var/www/letsencrypt:ro
+      - ./logs/nginx:/var/log/nginx
 
   fileserver:
     image: nginx:1.15.3-alpine
     volumes:
-      - ./fileserver/files:/www/data:ro
+      - ./data:/www/data:ro
       - ./fileserver/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs/fileserver:/var/log/nginx
   
   webhooks:
     build:
@@ -24,12 +26,12 @@ services:
     env_file:
       - webhooks.env
     volumes:
-      - ./data:/mnt/data
+      - ./repos:/mnt/repos
       - ./keys:/mnt/keys
 
   certbot:
     image: certbot/certbot
-    entrypoint: ''
+    entrypoint: '' # this is here to override certbot entry
     command: echo "Hello"
     volumes:
       - ./logs/letsencrypt:/var/log/letsencrypt
